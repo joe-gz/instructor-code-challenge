@@ -27,8 +27,8 @@ app.get ("/movies", function(req, res) {
   console.log(keyword)
   var url = "http://www.omdbapi.com/?s="+keyword
   request(url, function(error, response, body) {
-    var incidents = JSON.parse(body)
-    res.json(incidents);
+    var movies = JSON.parse(body)
+    res.json(movies);
   });
 });
 

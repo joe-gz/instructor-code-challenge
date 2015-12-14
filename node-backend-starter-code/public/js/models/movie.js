@@ -1,14 +1,29 @@
+var Movie = function(info){
+  this.title = info.Title;
+  this.year = info.Year;
+  this.imdbID = info.imdbID;
+  this.type = info.Type;
+  this.poster = info.Poster;
+  this.id = info._id;
+};
+
 Movie.all = []
 Movie.fetch = function(){
-  var color = $(".selectpicker option:selected").val();
-  console.log(color)
+  // var color = $(".dropdown-menu option:selected").val();
   var url = "/movies"
-  var request = $.getJSON(url).then(function(response){
-    for(var i = 0; i < response.length; i++){
-      $('body').append("<p>"+response[i]+"</p");
+  console.log(url);
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "json"
+  }).done ( function(response){
+    console.log(response.Search.length);
+    for(var i = 0; i < response.Search.length; i++){
+      $('body').append("<p>"+response.Search[i].Title+"</p>")
     }
-  }).fail(function(response){
-    console.log("js failed to load");
-  });
-  return request;
+  }).fail ( function (){
+    console.log("Failure");
+  }).always( function(){
+    console.log("Something's happening");
+  })
 };
