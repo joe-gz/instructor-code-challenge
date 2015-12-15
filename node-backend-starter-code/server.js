@@ -21,16 +21,17 @@ app.get('/favorites', function(req, res){
   res.json(data);
 });
 
-app.get ("/movies", function(req, res) {
-  var keyword = "Star Wars"
-  // $(".selectpicker option:selected").val();
-  console.log(keyword)
-  var url = "http://www.omdbapi.com/?s="+keyword
-  request(url, function(error, response, body) {
-    var movies = JSON.parse(body)
-    res.json(movies);
-  });
-});
+// app.get ("/movies", function(req, res) {
+//   // var keyword = document.getElementById("movieSearch").value;
+//   // var keyword = $('#movieSearch').val
+//   // var keyword = "star wars"
+//   console.log(keyword)
+//   var url = "http://www.omdbapi.com/?s="+keyword
+//   request(url, function(error, response, body) {
+//     var movies = JSON.parse(body)
+//     res.json(movies);
+//   });
+// });
 
 app.post('/favorites', function(req, res){
   if(!req.body.name || !req.body.oid){

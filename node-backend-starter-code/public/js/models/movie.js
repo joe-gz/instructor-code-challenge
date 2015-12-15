@@ -8,22 +8,40 @@ var Movie = function(info){
 };
 
 Movie.all = []
-Movie.fetch = function(){
+Movie.fetch = function(keyword){
   // var color = $(".dropdown-menu option:selected").val();
-  var url = "/movies"
+  var url = "http://www.omdbapi.com/?s="+keyword
   console.log(url);
-  $.ajax({
-    url: url,
-    type: "GET",
-    dataType: "json"
-  }).done ( function(response){
-    console.log(response.Search.length);
-    for(var i = 0; i < response.Search.length; i++){
-      $('body').append("<p>"+response.Search[i].Title+"</p>")
-    }
-  }).fail ( function (){
-    console.log("Failure");
-  }).always( function(){
-    console.log("Something's happening");
-  })
-};
+
+  var request = $.getJSON(url).then(function(response){
+      for(var i = 0; i < response.Search.length; i++){
+        Movie.all.push(new Movie(response.Search[i]));
+      }
+    }).fail(function(response){
+      console.log("js failed to load");
+    });
+    return request;
+  };
+
+
+//   var request = new XMLHttpRequest();
+//   request.open('GET', url, true);
+//   request.onreadystatechange = function() {
+//     if (request.status >= 200 && request.readyState === 4) {
+//       // Success!
+//       var data = JSON.parse(request.responseText);
+//       console.log(data.Search.length);
+//       for(var i = 0; i < data.Search.length; i++){
+//         Movie.all.push(new Movie(data.Search[i]));
+//       }
+//       console.log(Movie.all);
+//     } else {
+//       // We reached our target server, but it returned an error
+//     }
+//   };
+//   request.onerror = function() {
+//     // There was a connection error of some sort
+//   };
+// console.log(request);
+//   request.send()
+// };
