@@ -2,9 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
   // code...
   document.getElementById("submit").addEventListener("click", function(evt){
     evt.preventDefault();
-    console.log("starts?");
     var keyword = document.getElementById("movieSearch").value;
-    console.log(keyword);
+    // console.log(keyword);
 
     Movie.fetch(keyword).then(function(movies){
       Movie.all.forEach(function(movie){
@@ -15,4 +14,17 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
+
+  document.getElementById("showFavorites").addEventListener("click", function(evt){
+    evt.preventDefault();
+    console.log("favorites!");
+    Movie.favorite().then(function(){
+      console.log("This has been done");
+      Favorite.all.forEach(function(movie){
+        var view = new MovieView(movie)
+        view.render();
+      });
+    });
+  })
+
 });

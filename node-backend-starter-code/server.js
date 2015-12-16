@@ -16,36 +16,26 @@ app.get('/', function(req, res){
 })
 
 app.get('/favorites', function(req, res){
-  var data = fs.readFileSync('./data.json');
+  console.log("Running?");
+  var data = JSON.parse(fs.readFileSync('./data.json'));
+  console.log(data);
   res.setHeader('Content-Type', 'application/json');
   res.json(data);
 });
 
-// app.get ("/movies", function(req, res) {
-//   // var keyword = document.getElementById("movieSearch").value;
-//   // var keyword = $('#movieSearch').val
-//   // var keyword = "star wars"
-//   console.log(keyword)
-//   var url = "http://www.omdbapi.com/?s="+keyword
-//   request(url, function(error, response, body) {
-//     var movies = JSON.parse(body)
-//     res.json(movies);
-//   });
-// });
-
 app.post('/favorites', function(req, res){
   if(!req.body.name || !req.body.oid){
-    res.send("Error");
-    return
-
     var data = JSON.parse(fs.readFileSync('./data.json'));
     data.push(req.body);
     fs.writeFile('./data.json', JSON.stringify(data));
     res.setHeader('Content-Type', 'application/json');
     res.send(data);
+  } else {
+    res.send("Error");
   }
-});
-
-  app.listen(3000, function(){
-    console.log("Listening on port 3000");
+    // return
   });
+
+app.listen(3000, function(){
+  console.log("Listening on port 3000");
+});
