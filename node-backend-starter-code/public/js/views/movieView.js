@@ -90,5 +90,29 @@ MovieView.prototype = {
     var movieView = new MovieView(self);
     self.makeFavorite(movieView)
     // .then(function() { commentsDiv.prepend(commentView.render()); });
+  },
+  renderFavorites: function(){
+    var self = this;
+    console.log(self);
+    self.favoriteTemplate(self.movie);
+
+    var movieItem = document.getElementById(self.movie.imdbID);
+    movieItem.addEventListener("click", function(){
+      self.getInfo(self.movie.title);
+    })
+
+    // var hideButton = document.getElementById('hideButton'+self.movie.imdbID);
+    // console.log(hideButton);
+    // hideButton.addEventListener("click", function(){
+    //   self.removeInfo();
+    // })
+  },
+  favoriteTemplate: function(){
+    var movie = this.movie;
+    var div = document.createElement('div');
+    div.innerHTML = "<a id = "+movie.imdbID+">" +movie.title+"</a>"
+    document.body.appendChild(div);
+    var body = document.body
+    return (body)
   }
 };

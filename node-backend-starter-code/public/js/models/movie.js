@@ -74,23 +74,27 @@ Movie.fetchInfo = function(movieTitle){
   return request;
 };
 
-var Favorite = function(info){
-  this.title = info.Title;
-  this.year = info.Year;
-  this.imdbID = info.imdbID;
-  this.type = info.Type;
-  this.poster = info.Poster;
-  this.id = info._id;
+var Favorite = function(movie){
+  this.title = movie.title;
+  this.year = movie.year;
+  this.imdbID = movie.imdbID;
+  this.type = movie.type;
+  this.poster = movie.poster;
+  this.id = movie._id;
 };
 
 Favorite.all = []
-Movie.favorite = function(){
+Favorite.fetch = function(){
   var url = "/favorites"
   console.log(url);
 
   var request = $.getJSON(url).then(function(response){
-    Favorite.all.push(new Movie(response));
-    console.log(response);
+    console.log(response.length);
+    for(var i = 0; i < response.length; i++){
+      Favorite.all.push(new Favorite(response[i].movie));
+      console.log(response[i].movie);
+    }
+    console.log(Favorite.all[0]);
   }).fail(function(response){
     console.log("js failed to load");
   });

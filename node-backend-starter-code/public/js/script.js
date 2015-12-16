@@ -18,11 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("showFavorites").addEventListener("click", function(evt){
     evt.preventDefault();
     console.log("favorites!");
-    Movie.favorite().then(function(){
+    Favorite.fetch().then(function(){
       console.log("This has been done");
+      console.log(Favorite.all);
       Favorite.all.forEach(function(movie){
         var view = new MovieView(movie)
-        view.render();
+        view.renderFavorites();
       });
     });
   })
