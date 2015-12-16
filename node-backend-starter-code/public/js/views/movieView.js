@@ -8,6 +8,7 @@ var MovieView = function(movie){
 MovieView.prototype = {
   render: function(){
     var self = this;
+    console.log(self);
     self.movieTemplate(self.movie);
 
     var movieItem = document.getElementById(self.movie.imdbID);
@@ -15,12 +16,12 @@ MovieView.prototype = {
       self.getInfo(self.movie.title);
     })
 
-    var favoriteButton = document.getElementsByClassName("favorite");
-    for (var i = 0; i < favoriteButton.length; i++){
-      favoriteButton[i].addEventListener("click", function(){
-        self.addFavorite();
-      })
-    }
+    // var favoriteButton = document.getElementsByClassName("favorite");
+    // for (var i = 0; i < favoriteButton.length; i++){
+    //   favoriteButton[i].addEventListener("click", function(){
+    //     self.addFavorite();
+    //   })
+    // }
 
     // var hideButton = document.getElementById('hideButton'+self.movie.imdbID);
     // console.log(hideButton);
@@ -31,7 +32,8 @@ MovieView.prototype = {
   movieTemplate: function(){
     var movie = this.movie;
     var div = document.createElement('div');
-    div.innerHTML = "<a id = "+movie.imdbID+">" +movie.title+"</a>"+"<button class = 'favorite'>Favorite</button>"
+    div.innerHTML = "<a id = "+movie.imdbID+">" +movie.title+"</a>"
+    // +"<button class = 'favorite'>Favorite</button>"
     document.body.appendChild(div);
     var body = document.body
     return (body)
@@ -72,24 +74,31 @@ MovieView.prototype = {
     posterTag.src = selectedMovie.poster;
     div.appendChild(posterTag);
     var hideButton = document.createElement('span');
-    hideButton.innerHTML = "<input id = hideButton"+movie.imdbID+" type='button' value='Hide'/>";
+    hideButton.innerHTML = "<button class = 'favorite'>Favorite</button>"+"<input id = hideButton"+movie.imdbID+" type='button' value='Hide'/>";
     div.appendChild(hideButton);
     movieChoice.appendChild(div);
 
-    var hideButton = document.getElementById('hideButton'+movie.imdbID);
-    console.log(hideButton);
-    hideButton.addEventListener("click", function(){
-      movieChoice.removeInfo();
-    })
+    var addFavorite = function(movie) {
+      var movieView = new MovieView(movie);
+      movie.makeFavorite(movieView)
+    }
+
+    var favoriteButton = document.getElementsByClassName("favorite");
+    for (var i = 0; i < favoriteButton.length; i++){
+      favoriteButton[i].addEventListener("click", function(){
+        var fav = document.getElementById(movie.imdbID)
+        console.log(movie);
+        addFavorite(movie);
+      })
+    }
+
+    // var hideButton = document.getElementById('hideButton'+movie.imdbID);
+    // console.log(hideButton);
+    // hideButton.addEventListener("click", function(){
+    //   movieChoice.removeInfo();
+    // })
 
     return (movieChoice)
-  },
-  addFavorite: function() {
-    var self = this.movie;
-    // console.log(self);
-    var movieView = new MovieView(self);
-    self.makeFavorite(movieView)
-    // .then(function() { commentsDiv.prepend(commentView.render()); });
   },
   renderFavorites: function(){
     var self = this;
@@ -100,12 +109,6 @@ MovieView.prototype = {
     movieItem.addEventListener("click", function(){
       self.getInfo(self.movie.title);
     })
-
-    // var hideButton = document.getElementById('hideButton'+self.movie.imdbID);
-    // console.log(hideButton);
-    // hideButton.addEventListener("click", function(){
-    //   self.removeInfo();
-    // })
   },
   favoriteTemplate: function(){
     var movie = this.movie;

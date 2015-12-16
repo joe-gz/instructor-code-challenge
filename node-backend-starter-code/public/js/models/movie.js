@@ -47,7 +47,6 @@ Movie.prototype = {
       contentType : "application/json",
       success: function(movieView){
         console.log("success");
-        console.log(movieView);
       }
       , error: function(jqXHR, textStatus, err){
         console.log(textStatus)
