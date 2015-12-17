@@ -11,10 +11,12 @@ app.use(bodyParser.json());
 
 // app.use('/', express.static(path.join(__dirname, 'public'));
 
+// render index page
 app.get('/', function(req, res){
   res.render( "index.html" )
 })
 
+// get json data from data.json when clicking on favorites
 app.get('/favorites', function(req, res){
   console.log("Running?");
   var data = JSON.parse(fs.readFileSync('./data.json'));
@@ -23,6 +25,7 @@ app.get('/favorites', function(req, res){
   res.json(data);
 });
 
+// post json data from data.json when clicking on favorite button on single movie
 app.post('/favorites', function(req, res){
   if(!req.body.name || !req.body.oid){
     console.log(req.body.name);

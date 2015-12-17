@@ -21,6 +21,16 @@ var MovieInfo = function(info){
   this.id = info._id;
 };
 
+var Favorite = function(movie){
+  this.title = movie.title;
+  this.year = movie.year;
+  this.imdbID = movie.imdbID;
+  this.type = movie.type;
+  this.poster = movie.poster;
+  this.id = movie._id;
+};
+
+// Initial search AJAX call
 Movie.all = []
 Movie.fetch = function(keyword){
   var url = "https://www.omdbapi.com/?s="+keyword
@@ -36,6 +46,7 @@ Movie.fetch = function(keyword){
   return request;
 };
 
+// POST favorite selection to data.json
 Movie.prototype = {
   makeFavorite: function(movieView) {
     var station = this;
@@ -58,6 +69,7 @@ Movie.prototype = {
   }
 }
 
+// FETCH detailed movie information after clicking on movie title
 MovieInfo.all = []
 Movie.fetchInfo = function(movieTitle){
   var url = "https://www.omdbapi.com/?t="+movieTitle
@@ -71,15 +83,7 @@ Movie.fetchInfo = function(movieTitle){
   return request;
 };
 
-var Favorite = function(movie){
-  this.title = movie.title;
-  this.year = movie.year;
-  this.imdbID = movie.imdbID;
-  this.type = movie.type;
-  this.poster = movie.poster;
-  this.id = movie._id;
-};
-
+// FETCH favorites from data.json
 Favorite.all = []
 Favorite.fetch = function(){
   var url = "/favorites"
@@ -91,7 +95,6 @@ Favorite.fetch = function(){
       Favorite.all.push(new Favorite(response[i].movie));
       console.log(response[i].movie);
     }
-    console.log(Favorite.all[0]);
   }).fail(function(response){
     console.log("js failed to load");
   });
