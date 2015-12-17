@@ -1,8 +1,5 @@
 var MovieView = function(movie){
   this.movie = movie;
-  // this.$el = $("<div class='movie'></div>");
-  // this.render();
-  // $(".artists").append(this.$el);
 };
 
 MovieView.prototype = {
@@ -15,35 +12,20 @@ MovieView.prototype = {
     movieItem.addEventListener("click", function(){
       self.getInfo(self.movie.title);
     })
-
-    // var favoriteButton = document.getElementsByClassName("favorite");
-    // for (var i = 0; i < favoriteButton.length; i++){
-    //   favoriteButton[i].addEventListener("click", function(){
-    //     self.addFavorite();
-    //   })
-    // }
-
-    // var hideButton = document.getElementById('hideButton'+self.movie.imdbID);
-    // console.log(hideButton);
-    // hideButton.addEventListener("click", function(){
-    //   self.removeInfo();
-    // })
   },
   movieTemplate: function(){
     var movie = this.movie;
+    var bodyDiv = document.getElementsByClassName('movieListContainer');
     var div = document.createElement('div');
+    div.className = "movieLink"
     div.innerHTML = "<a id = "+movie.imdbID+">" +movie.title+"</a>"
-    // +"<button class = 'favorite'>Favorite</button>"
-    document.body.appendChild(div);
+    bodyDiv[0].appendChild(div);
     var body = document.body
-    return (body)
-  }
-  ,
-  removeInfo: function (){
+    return (bodyDiv)
+  },
+  removeInfo: function (section){
     console.log("Clicked?");
-    var movie = this.movie;
-    movieChoice = movie.getElementsByTagName('div')[0];
-
+    section.parentNode.removeChild(section);
   },
   getInfo: function(movieTitle){
     var self = this;
@@ -61,21 +43,21 @@ MovieView.prototype = {
     movieChoice = document.getElementById(movie.imdbID).parentNode;
     var div = document.createElement('div');
     div.className = "movieInfo"
+    var buttonsDiv = document.createElement('div');
+    buttonsDiv.innerHTML = "<button class = 'favorite'>Favorite</button>"+"<button class = 'hideButton'>Hide</button";
+    div.appendChild(buttonsDiv);
     var yearTag = document.createElement('p');
-    yearTag.innerHTML = selectedMovie.year;
+    yearTag.innerHTML = "Release Year: "+selectedMovie.year;
     div.appendChild(yearTag);
     var actorsTag = document.createElement('p');
-    actorsTag.innerHTML = selectedMovie.actors;
+    actorsTag.innerHTML = "Actors: "+selectedMovie.actors;
     div.appendChild(actorsTag);
     var plotTag = document.createElement('p');
-    plotTag.innerHTML = selectedMovie.plot;
+    plotTag.innerHTML = "Plot: "+selectedMovie.plot;
     div.appendChild(plotTag);
     var posterTag = document.createElement('img');
     posterTag.src = selectedMovie.poster;
     div.appendChild(posterTag);
-    var hideButton = document.createElement('span');
-    hideButton.innerHTML = "<button class = 'favorite'>Favorite</button>"+"<input id = hideButton"+movie.imdbID+" type='button' value='Hide'/>";
-    div.appendChild(hideButton);
     movieChoice.appendChild(div);
 
     var addFavorite = function(movie) {
@@ -92,12 +74,16 @@ MovieView.prototype = {
       })
     }
 
-    // var hideButton = document.getElementById('hideButton'+movie.imdbID);
-    // console.log(hideButton);
-    // hideButton.addEventListener("click", function(){
-    //   movieChoice.removeInfo();
-    // })
-
+    var hideButton = document.getElementsByClassName('hideButton');
+    for (var i = 0; i < hideButton.length; i++){
+      hideButton[i].addEventListener("click", function(e){
+        var section = document.getElementsByClassName('movieInfo');
+        for (var j = 0; j < section.length; j++){
+          console.log(section);
+          section[j].style.display = "none";
+        }
+      })
+    }
     return (movieChoice)
   },
   renderFavorites: function(){
@@ -113,6 +99,7 @@ MovieView.prototype = {
   favoriteTemplate: function(){
     var movie = this.movie;
     var div = document.createElement('div');
+    div.className = "favDivs"
     div.innerHTML = "<a id = "+movie.imdbID+">" +movie.title+"</a>"
     document.body.appendChild(div);
     var body = document.body

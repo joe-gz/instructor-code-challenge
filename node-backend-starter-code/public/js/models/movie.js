@@ -47,8 +47,8 @@ Movie.prototype = {
       contentType : "application/json",
       success: function(movieView){
         console.log("success");
-      }
-      , error: function(jqXHR, textStatus, err){
+      },
+      error: function(jqXHR, textStatus, err){
         console.log(textStatus)
       }
     }).then(
@@ -65,11 +65,9 @@ Movie.fetchInfo = function(movieTitle){
 
   var request = $.getJSON(url).then(function(response){
     MovieInfo.all.push(new MovieInfo(response));
-    // console.log(MovieInfo.all);
   }).fail(function(response){
     console.log("js failed to load");
   });
-  // console.log(request);
   return request;
 };
 
@@ -97,7 +95,6 @@ Favorite.fetch = function(){
   }).fail(function(response){
     console.log("js failed to load");
   });
-  // console.log(request);
   return request;
 };
 

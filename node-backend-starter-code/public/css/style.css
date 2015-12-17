@@ -1,0 +1,16 @@
+#main, h1, .submitForm,.favDivs {
+  text-align: center;
+}
+
+.movieLink,.favDivs {
+  margin: 2%;
+}
+
+.favorite, .hideButton {
+  margin: 1%;
+}
+
+.movieContainer {
+  width: 75%;
+  margin-left: 12.5%;
+}

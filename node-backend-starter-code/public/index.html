@@ -3,20 +3,31 @@
 <head>
   <meta charset="utf-8">
   <title>Code-Challenge</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
   <script type="text/javascript" src= "https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src = "js/script.js"></script>
   <script type="text/javascript" src = "js/models/movie.js"></script>
   <script type="text/javascript" src = "js/views/movieView.js"></script>
 </head>
 <body>
-  <h1>Movies!!</h1>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button id ='showFavorites' class = "btn btn-default navbar-btn">Show Favorites</button>
+      </div>
+    </div>
+  </nav>
+  <div id = "main" class="container-fluid">
+    <h1>Movies!!</h1>
 
-  <form action="/movies" method="get">
-    <input id ='movieSearch' type='text' placeholder="Search for a title..." name='movies'>
-    <input id ='submit' type='submit' value='Find Movies'>
-  </form>
+    <form class = "submitForm" action="/movies" method="get">
+      <input id ='movieSearch' type='text' placeholder="Search for a title..." name='movies'>
+      <input id ='submit' type='submit' value='Find Movies'>
+    </form>
+    <div class="movieContainer">
 
-  <input id ='showFavorites' type='submit' value='Show Favorites'>
-
+    </div>
+  </div>
 </body>
 </html>
