@@ -1,8 +1,16 @@
+#### DIR Code-Challenge
+
+- Heroku deployment:
+
+- Admittedly the code is not the cleanest, but I would love to get some sort of feedback regardless of the outcome of this
+
+
+
 ![GA Logo](https://raw.github.com/generalassembly/ga-ruby-on-rails-for-devs/master/images/ga.png)
 
 ## WDI Instructor Code Challenge
 
-### GOAL 
+### GOAL
 
 > Create a single page application that will utilize an external API to request movie data. The client side application will be served by a back-end which will have the ability to persist data.
 
@@ -37,7 +45,7 @@
 
 #### Deliverables
 
-- Please send us back a link to a git repo with the completed code challenge. 
+- Please send us back a link to a git repo with the completed code challenge.
 
 - Include a README.md file in your repo with a link to your application deployed on Heroku or Digital Ocean.
 
