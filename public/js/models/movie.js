@@ -23,7 +23,7 @@ var MovieInfo = function(info){
 
 Movie.all = []
 Movie.fetch = function(keyword){
-  var url = "http://www.omdbapi.com/?s="+keyword
+  var url = "https://www.omdbapi.com/?s="+keyword
   console.log(url);
 
   var request = $.getJSON(url).then(function(response){
@@ -60,7 +60,7 @@ Movie.prototype = {
 
 MovieInfo.all = []
 Movie.fetchInfo = function(movieTitle){
-  var url = "http://www.omdbapi.com/?t="+movieTitle
+  var url = "https://www.omdbapi.com/?t="+movieTitle
   console.log(url);
 
   var request = $.getJSON(url).then(function(response){
