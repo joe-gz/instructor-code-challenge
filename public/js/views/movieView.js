@@ -20,7 +20,6 @@ MovieView.prototype = {
     div.className = "movieLink"
     div.innerHTML = "<a id = "+movie.imdbID+">" +movie.title+"</a>"
     bodyDiv[0].appendChild(div);
-    var body = document.body
     return (bodyDiv)
   },
   removeInfo: function (section){

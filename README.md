@@ -2,9 +2,12 @@
 
 - Heroku deployment: https://moviecodechallenge-joegz.herokuapp.com/
 
-- Admittedly the code is not the cleanest, but I would love to get some sort of feedback regardless of the outcome of this
+- The DIR position is very intriguing to me.  I believe that if you asked a lot of the students around here, I am always open helping others through issues they have in their code.
+- It is also clearly an opportunity to review all of the material we've learned over the last 10-12 weeks! I know for certain there are areas where I could use extra time in a learning environment, and given the attitude of everyone around here, this is the perfect place.
 
+> Admittedly the code is not the cleanest, but I would love to get some sort of feedback regardless of the outcome if at all possible!!
 
+###
 
 ![GA Logo](https://raw.github.com/generalassembly/ga-ruby-on-rails-for-devs/master/images/ga.png)
 

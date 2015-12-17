@@ -2,13 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.getElementById("submit").addEventListener("click", function(evt){
     evt.preventDefault();
-    var movieListContainer = document.getElementsByClassName('movieListContainer');
-    if (movieListContainer[0]){
-      movieListContainer[0].parentNode.removeChild(movieListContainer[0]);
-      setMovieArea()
-    } else {
-      setMovieArea()
-    }
+    determineMovieArea();
 
     Movie.all = [];
     var keyword = document.getElementById("movieSearch").value;
@@ -23,8 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("showFavorites").addEventListener("click", function(evt){
     evt.preventDefault();
     console.log("favorites!");
-    var movieContainer = document.getElementsByClassName('movieContainer');
-    movieContainer[0].style.display = "none";
+    determineMovieArea();
     Favorite.fetch().then(function(){
       console.log("This has been done");
       console.log(Favorite.all);
@@ -34,6 +27,16 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   })
+
+  var determineMovieArea = function(){
+    var movieListContainer = document.getElementsByClassName('movieListContainer');
+    if (movieListContainer[0]){
+      movieListContainer[0].parentNode.removeChild(movieListContainer[0]);
+      setMovieArea()
+    } else {
+      setMovieArea()
+    }
+  }
 
   var setMovieArea = function (){
     var newDiv = document.createElement('div');
