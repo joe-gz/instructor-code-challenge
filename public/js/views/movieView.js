@@ -59,30 +59,11 @@ MovieView.prototype = {
     div.appendChild(posterTag);
     movieChoice.appendChild(div);
 
-    var addFavorite = function(movie) {
-      var movieView = new MovieView(movie);
-      movie.makeFavorite(movieView)
-    }
-
-    var favoriteButton = document.getElementsByClassName("favorite");
-    for (var i = 0; i < favoriteButton.length; i++){
-      favoriteButton[i].addEventListener("click", function(){
-        var fav = document.getElementById(movie.imdbID)
-        console.log(movie);
-        addFavorite(movie);
-      })
-    }
+    this.favoriteButtonClick(movie);
 
     var hideButton = document.getElementsByClassName('hideButton');
-    for (var i = 0; i < hideButton.length; i++){
-      hideButton[i].addEventListener("click", function(e){
-        var section = document.getElementsByClassName('movieInfo');
-        for (var j = 0; j < section.length; j++){
-          console.log(section);
-          section[j].style.display = "none";
-        }
-      })
-    }
+    this.hideButtonClick(hideButton)
+
     return (movieChoice)
   },
   renderFavorites: function(){
@@ -103,5 +84,31 @@ MovieView.prototype = {
     document.body.appendChild(div);
     var body = document.body
     return (body)
+  },
+  hideButtonClick: function (hideButton){
+    for (var i = 0; i < hideButton.length; i++){
+      hideButton[i].addEventListener("click", function(e){
+        var section = document.getElementsByClassName('movieInfo');
+        for (var j = 0; j < section.length; j++){
+          console.log(section);
+          section[j].style.display = "none";
+        }
+      })
+    }
+  },
+  favoriteButtonClick: function(movie){
+
+    var addFavorite = function(movie) {
+      var movieView = new MovieView(movie);
+      movie.makeFavorite(movieView)
+    }
+
+    var favoriteButton = document.getElementsByClassName("favorite");
+    for (var i = 0; i < favoriteButton.length; i++){
+      favoriteButton[i].addEventListener("click", function(){
+        console.log(movie);
+        addFavorite(movie);
+      })
+    }
   }
 };
